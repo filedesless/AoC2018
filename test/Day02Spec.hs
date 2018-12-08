@@ -6,11 +6,13 @@ import Test.Hspec (Spec, describe, it, shouldBe)
 spec :: Spec
 spec =
   let expected = [
-             ("abcdee", (False, True)),
+             ("abcdef", (False, False)),
              ("bababc", (True, True)),
              ("abbcde", (True, False)),
              ("abcccd", (False, True)),
-             ("aabcdd", (True, False))
+             ("aabcdd", (True, False)),
+             ("aabcee", (True, False)),
+             ("ababab", (False, True))
              ] in do
   describe "hasDuo" $
     it "should work with given examples" $ do
