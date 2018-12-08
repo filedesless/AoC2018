@@ -16,11 +16,11 @@ spec =
              ] in do
   describe "hasDuo" $
     it "should work with given examples" $ do
-      map hasDuo (map fst expected) `shouldBe` map (fst . snd) expected
+      map (hasN 2) (map fst expected) `shouldBe` map (fst . snd) expected
 
   describe "hasTrio" $
     it "should work with given examples" $ do
-      map hasTrio (map fst expected) `shouldBe` map (snd . snd) expected
+      map (hasN 3) (map fst expected) `shouldBe` map (snd . snd) expected
 
   describe "hamming" $
     it "should work with given examples" $ do
