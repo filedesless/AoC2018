@@ -1,10 +1,16 @@
 module Day02 where
 
+hasN :: Int -> String -> Bool
+hasN n [] = False
+hasN n (x:xs) =
+  length [ y | y <- xs, x == y ] == (pred n) ||
+  hasN n [ y | y <- xs, x /= y ]
+
 hasDuo :: String -> Bool
-hasDuo = error "Not implemented yet"
+hasDuo = hasN 2
 
 hasTrio :: String -> Bool
-hasTrio = error "Not implemented yet"
+hasTrio = hasN 3
 
 day02a :: String -> Int
 day02a = error "Not implemented yet"
