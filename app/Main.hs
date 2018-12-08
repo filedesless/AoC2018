@@ -1,11 +1,18 @@
 module Main where
 
-import Text.Printf
-import Day01
-import Day02
+import Text.Printf (printf)
+import Data.Text (justifyRight, unpack, pack)
+import Day01 (day01a, day01b)
+import Day02 (day02a)
+
+run :: (Show a) => Integer  -> String -> (String -> a) -> IO ()
+run day part function =
+  readFile ("input/" ++ unpack (justifyRight 2 '0' (pack (show day))) ++ ".txt")
+  >>= printf "Day %02d %s: %s\n" day part . (show . function)
 
 main :: IO ()
 main =
-  readFile "input/01-1.txt" >>= printf "Day 01 a): %d\n" . day01a >>
-  readFile "input/01-1.txt" >>= printf "Day 01 b): %d\n" . day01b >>
-  readFile "input/02-1.txt" >>= printf "Day 02 a): %d\n" . day02a
+  run 1 "a)" day01a >>
+  run 1 "b)" day01b >>
+  run 2 "a)" day02a
+
