@@ -21,3 +21,8 @@ spec =
   describe "hasTrio" $
     it "should work with given examples" $ do
       map hasTrio (map fst expected) `shouldBe` map (snd . snd) expected
+
+  describe "hamming" $
+    it "should work with given examples" $ do
+      hamming "abcde" "axcye" `shouldBe` 2
+      hamming "fghij" "fguij" `shouldBe` 1

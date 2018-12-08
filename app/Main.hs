@@ -3,7 +3,7 @@ module Main where
 import Text.Printf (printf)
 import Data.Text (justifyRight, unpack, pack)
 import Day01 (day01a, day01b)
-import Day02 (day02a)
+import Day02 (day02a, day02b)
 
 run :: (Show a) => Integer  -> String -> (String -> a) -> IO ()
 run day part function =
@@ -14,5 +14,5 @@ main :: IO ()
 main =
   run 1 "a)" day01a >>
   run 1 "b)" day01b >>
-  run 2 "a)" day02a
-
+  run 2 "a)" day02a >>
+  run 2 "b)" day02b
