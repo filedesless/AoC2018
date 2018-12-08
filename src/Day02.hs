@@ -13,7 +13,9 @@ hasTrio :: String -> Bool
 hasTrio = hasN 3
 
 day02a :: String -> Int
-day02a = error "Not implemented yet"
+day02a s =
+  length (filter (hasDuo) (lines s)) *
+  length (filter (hasTrio) (lines s))
 
 day02b :: String -> Int
 day02b = error "Not implemented yet"
