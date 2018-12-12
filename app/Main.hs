@@ -5,6 +5,7 @@ import Data.Text (justifyRight, unpack, pack)
 import Day01 (day01a, day01b)
 import Day02 (day02a, day02b)
 import Day03 (day03a, day03b)
+import Day04 (day04a, day04b)
 
 run :: (Show a) => Integer  -> String -> (String -> a) -> IO ()
 run day part function =
