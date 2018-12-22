@@ -1,7 +1,7 @@
 module Day04Spec (spec) where
 
 import Day04
-import Test.Hspec (Spec, describe, it, shouldBe)
+import Test.Hspec (Spec, describe, it, shouldBe, beforeAll)
 import Data.Time
 
 expectedShifts :: [Shift]
@@ -14,8 +14,20 @@ expectedShifts = [
   ]
 
 spec :: Spec
-spec = do
-    describe "getShifts" $
-      it "should work with basic examples" $ do
-        input <- readFile "input/04.test.txt"
-        getShifts input `shouldBe` expectedShifts
+spec = do {
+
+  ; describe "getShifts" $ do {
+    ; it "should work with basic examples" $ do {
+        ; input <- readFile "input/04.test.txt"
+        ; getShifts input `shouldBe` expectedShifts
+        }
+    }
+
+  ; describe "day04a" $ do {
+    ; it "should return guard id * min num" $ do {
+        ; input <- readFile "input/04.test.txt"
+        ; day04a input `shouldBe` (10 * 24)
+        }
+    }
+
+  }

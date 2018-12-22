@@ -3,6 +3,7 @@ module Day04 where
 import Data.Time
 import Data.List
 import Data.List.Split
+import Data.Function( on )
 
 data Shift = Shift { guardId :: Int
                    , shiftDay :: Day
@@ -37,7 +38,13 @@ getShifts input = [ Shift (getGid sorted day) day (sleeps day) | day <- daysOf s
     extractDay [x, y, z] = fromGregorian (read $ drop 1 x) (read y) (read z)
 
 day04a :: String -> Int
-day04a = error "Not implemented yet"
+day04a s = minute * guardId chosen
+  where
+    minute = head $ maximumBy (compare `on` length) $ group minutes
+    minutes = sort $ concatMap (\(l, u) -> [l..u-1]) intervals
+    intervals = concatMap sleepIntervals $ filter (((==) `on` guardId) chosen) shifts
+    chosen = maximumBy (compare `on` (sum . map (uncurry (flip (-))) . sleepIntervals)) shifts
+    shifts = getShifts s
 
 day04b :: String -> Int
 day04b = error "Not implemented yet"
