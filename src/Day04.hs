@@ -33,12 +33,15 @@ getShifts :: String -> [Shift]
 getShifts = getShifts' . sort . lines
 
 day04a :: String -> Int
-day04a s = minute * guardId chosen
+day04a s = minute * chosenId
   where
     minute = head $ maximumBy (compare `on` length) $ group minutes
-    minutes = sort $ concatMap (\(l, u) -> [l..u-1]) intervals
-    intervals = concatMap sleepIntervals $ filter (((==) `on` guardId) chosen) shifts
-    chosen = maximumBy (compare `on` (sum . map (uncurry (flip (-))) . sleepIntervals)) shifts
+    minutes = sort $ concatMap (\(l, u) -> [l..u-1]) $
+      concatMap sleepIntervals $ shiftsOf chosenId
+    chosenId = fst $ maximumBy (compare `on` (sum . map (uncurry (flip (-)))) . snd) $
+      map (\id -> (id, concatMap sleepIntervals $ shiftsOf id)) ids
+    shiftsOf id = filter ((==) id . guardId) shifts
+    ids = nub $ map guardId shifts
     shifts = getShifts s
 
 day04b :: String -> Int
