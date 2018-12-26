@@ -32,17 +32,27 @@ getShifts' (h:t) = Shift gid day (getSleepIntervals today) : getShifts' after
 getShifts :: String -> [Shift]
 getShifts = getShifts' . sort . lines
 
+shiftsOf :: [Shift] -> Int -> [Shift]
+shiftsOf shifts id = filter ((==) id . guardId) shifts
+
 day04a :: String -> Int
 day04a s = minute * chosenId
   where
     minute = head $ maximumBy (compare `on` length) $ group minutes
     minutes = sort $ concatMap (\(l, u) -> [l..u-1]) $
-      concatMap sleepIntervals $ shiftsOf chosenId
+      concatMap sleepIntervals $ shiftsOf shifts chosenId
     chosenId = fst $ maximumBy (compare `on` (sum . map (uncurry (flip (-)))) . snd) $
-      map (\id -> (id, concatMap sleepIntervals $ shiftsOf id)) ids
-    shiftsOf id = filter ((==) id . guardId) shifts
+      map (\id -> (id, concatMap sleepIntervals $ shiftsOf shifts id)) ids
     ids = nub $ map guardId shifts
     shifts = getShifts s
 
 day04b :: String -> Int
-day04b = error "Not implemented yet"
+day04b s = chosenId * minute
+  where
+    (chosenId, (minute, frequency)) = maximumBy (compare `on` snd . snd) minutes
+    minutes = [ (i, maximumBy (compare `on` snd) l) | (i, l) <- freqs ]
+    freqs = [ (i, getFreqs sleeps) | (i, sleeps) <- pairs, not $ null sleeps ]
+    getFreqs = map (\l -> (head l, length l)) . group . sort . concatMap (\(l, u) -> [l..u-1])
+    pairs = map (\id -> (id, concatMap sleepIntervals $ shiftsOf shifts id)) ids
+    ids = nub $ map guardId shifts
+    shifts = getShifts s

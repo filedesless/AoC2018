@@ -17,17 +17,23 @@ spec :: Spec
 spec = do {
 
   ; describe "getShifts" $ do {
-    ; it "should work with basic examples" $ do {
-        ; input <- readFile "input/04.test.txt"
-        ; getShifts input `shouldBe` expectedShifts
-        }
-    }
+      ; it "should work with basic examples" $ do {
+          ; input <- readFile "input/04.test.txt"
+          ; getShifts input `shouldBe` expectedShifts
+          }
+      }
 
   ; describe "day04a" $ do {
-    ; it "should return guard id * min num" $ do {
-        ; input <- readFile "input/04.test.txt"
-        ; day04a input `shouldBe` (10 * 24)
-        }
-    }
+      ; it "should return guard id * min num" $ do {
+          ; input <- readFile "input/04.test.txt"
+          ; day04a input `shouldBe` (10 * 24)
+          }
+      }
 
+  ; describe "day04b" $ do {
+      ; it "should return guard id * min num" $ do {
+          ; input <- readFile "input/04.test.txt"
+          ; day04b input `shouldBe` (99 * 45)
+          }
+      }
   }

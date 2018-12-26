@@ -20,4 +20,5 @@ main =
   run 2 "b)" day02b >>
   run 3 "a)" day03a >>
   run 3 "b)" day03b >>
-  run 4 "a)" day04a
+  run 4 "a)" day04a >>
+  run 4 "b)" day04b
