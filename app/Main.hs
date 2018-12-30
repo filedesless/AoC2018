@@ -6,6 +6,7 @@ import Day01 (day01a, day01b)
 import Day02 (day02a, day02b)
 import Day03 (day03a, day03b)
 import Day04 (day04a, day04b)
+import Day05 (day05a, day05b)
 
 run :: (Show a) => Integer  -> String -> (String -> a) -> IO ()
 run day part function =
@@ -21,4 +22,6 @@ main =
   run 3 "a)" day03a >>
   run 3 "b)" day03b >>
   run 4 "a)" day04a >>
-  run 4 "b)" day04b
+  run 4 "b)" day04b >>
+  run 5 "a)" day05a >>
+  run 5 "b)" day05b
