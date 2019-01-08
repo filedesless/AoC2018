@@ -26,4 +26,11 @@ spec = do {
           }
       }
 
+  ; describe "sdist (sum of distances)" $ do {
+      ; it "should be 30 for (4, 3)" $ do {
+          ; input <- readFile "input/06.test.txt"
+          ; sdist (getLocs input) (Pt 4 3) `shouldBe` 30
+          }
+      }
+
   }

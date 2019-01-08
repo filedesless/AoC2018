@@ -19,19 +19,24 @@ grid locs (Pt x y)
     mdistance = minimumBy (compare `on` snd) distances
     distances = map (\(Loc c pt) -> (Loc c pt, dist pt (Pt x y))) locs
 
+getLocs :: String -> [Location]
+getLocs s = [ Loc c (Pt x y) | (c, (x, y)) <- zip (['a'..'z'] ++ ['A'..'Z']) (getTups s) ]
+
+getTups :: String -> [(Int, Int)]
+getTups s = [ (read x :: Int, read y :: Int) | (x:y:rest) <- map (splitOn ", " ) $ lines s ]
+
 day06a :: String -> Int
 day06a s = maximum $ map (\c -> length $ filter (== c) fullGrid) finites
   where
     fullGrid = map (grid locs) [ Pt x y | (x, y) <- numGrid ]
     numGrid = [ (x, y) | y <- [0..uy], x <- [0..ux] ]
-    finites = charset \\ infinites
-    infinites = map (grid locs)
+    finites = charset \\ map (grid locs)
       [ Pt x y | (x, y) <- numGrid, x <= 0 || x >= ux || y <= 0 || y >= uy ]
     (ux, uy) = (fst $ maximumBy (compare `on` fst) tups, snd $ maximumBy (compare `on` snd) tups)
-    charset = map locChar locs
-    locs = [ Loc c (Pt x y) | (c, (x, y)) <- zip (['a'..'z'] ++ ['A'..'Z']) tups ]
-    tups = [ (read x :: Int, read y :: Int) | (x:y:rest) <- map (splitOn ", " ) $ lines s ]
+    (charset, locs, tups) = (map locChar locs, getLocs s, getTups s)
 
+sdist :: [Location] -> Point -> Int
+sdist locs pt = sum $ map (dist pt) (map locPt locs)
 
 day06b :: String -> Int
 day06b = undefined
