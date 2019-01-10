@@ -33,4 +33,11 @@ spec = do {
           }
       }
 
+  ; describe "day06b" $ do {
+      ; it "should work for basic examples" $ do {
+          ; input <- readFile "input/06.test.txt"
+          ; day06b 32 input `shouldBe` 16
+          }
+      }
+
   }

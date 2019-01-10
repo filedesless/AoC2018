@@ -38,5 +38,11 @@ day06a s = maximum $ map (\c -> length $ filter (== c) fullGrid) finites
 sdist :: [Location] -> Point -> Int
 sdist locs pt = sum $ map (dist pt) (map locPt locs)
 
-day06b :: String -> Int
-day06b = undefined
+day06b :: Int -> String -> Int
+day06b m s = length [ 1 | x <- [0..ux], y <- [0..uy], sdist locs (Pt x y) < m ]
+  where
+    (ux, uy) = (fst $ maximumBy (compare `on` fst) tups, snd $ maximumBy (compare `on` snd) tups)
+    (locs, tups) = (getLocs s, getTups s)
+
+
+
