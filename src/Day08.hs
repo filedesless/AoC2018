@@ -18,5 +18,13 @@ day08a :: String -> Int
 day08a s = foldTree (\meta bag -> sum $ sum meta : bag) t
   where (_, t) = buildTree (readNumbers s)
 
+val :: Tree [Int] -> Int
+val (Node meta []) = sum meta
+val (Node [] subforest) = 0
+val (Node (h:t) subforest) =
+  val (Node t subforest) +
+  if h > 0 && h <= length subforest
+  then val (subforest !! (pred h)) else 0
+
 day08b :: String -> Int
-day08b s = undefined
+day08b = val . snd . buildTree . readNumbers

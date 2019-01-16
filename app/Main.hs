@@ -32,4 +32,5 @@ main =
   run 6 "b)" (day06b 10000) >>
   run 7 "a)" day07a >>
   run 7 "b)" day07b >>
-  run 8 "a)" day08a
+  run 8 "a)" day08a >>
+  run 8 "b)" day08b
