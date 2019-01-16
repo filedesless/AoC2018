@@ -36,4 +36,17 @@ spec = do {
           }
       }
 
+  ; describe "day08a" $ do {
+      ; it "should return 138 for example input" $ do {
+          ; input <- readFile "input/08.test.txt"
+          ; day08a input `shouldBe` 138
+          }
+      }
+
+  ; describe "day08b" $ do {
+      ; it "should return 66 for example input" $ do {
+          ; input <- readFile "input/08.test.txt"
+          ; day08b input `shouldBe` 66
+          }
+      }
   }

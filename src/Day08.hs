@@ -15,7 +15,8 @@ buildTree (n:m:rest) = (total + m + 2, Node (take m $ drop total rest) forest)
                    (total + i, forest ++ [Node label sub])) (0, [])  [1..n]
 
 day08a :: String -> Int
-day08a s = undefined
+day08a s = foldTree (\meta bag -> sum $ sum meta : bag) t
+  where (_, t) = buildTree (readNumbers s)
 
 day08b :: String -> Int
 day08b s = undefined
