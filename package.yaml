@@ -27,6 +27,7 @@ dependencies:
 - split
 - time
 - QuickCheck
+- data-clist
 
 library:
   source-dirs: src
