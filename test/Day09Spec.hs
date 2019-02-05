@@ -2,20 +2,19 @@ module Day09Spec (spec) where
 
 import Day09
 import Test.Hspec (Spec, describe, it, shouldBe)
-
+import Data.IntMap( IntMap )
+import qualified Data.IntMap as IntMap
 import Data.CircularList
 
-game = Game (fromList $ replicate 9 0) (singleton 0)
-expected = Game (fromList [0,0,0,0,0,0,32,0,0])
+expected = Game (IntMap.fromList [(5,32)])
            (fromList [25,10,21,5,22,11,1,12,6,13,3,14,7,15,0,16,8,17,4,18,19,2,24,20])
-
 
 spec :: Spec
 spec = do {
 
   ; describe "turn" $ do {
       ; it "should work with basic examples" $ do {
-          ; foldl turn game [1..25] `shouldBe` expected
+          ; turn game 9 25 1 `shouldBe` expected
           }
       }
 

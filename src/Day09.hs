@@ -2,22 +2,27 @@ module Day09 where
 
 import Data.Maybe
 import Data.CircularList
+import Data.IntMap( IntMap )
+import qualified Data.IntMap as IntMap
 
-data Game = Game { getScores :: CList Int
+data Game = Game { getScores :: IntMap Int
                  , getMarble :: CList Int
                  } deriving (Show, Eq)
 
-turn :: Game -> Int -> Game
-turn (Game scores marble) i
-  | mod i 23 == 0  = Game (rotR score) $ removeR lefty
-  | otherwise      = Game (rotR scores) $ insertL i $ rotR marble
+game = Game IntMap.empty (singleton 0)
+
+turn :: Game -> Int -> Int -> Int -> Game
+turn game@(Game scores marble) n m i
+  | i == m + 1    = game
+  | mod i 23 == 0 = turn (Game score' $ removeR lefty)  n m $ succ i
+  | otherwise     = turn (Game scores $ insertL i $ rotR marble) n m $ succ i
   where
-    score = update (sum $ catMaybes [Just i, focus scores, focus lefty]) scores
+    score' = IntMap.insertWith (+) (mod i n) newval scores
+    newval = sum $ catMaybes [Just i, focus lefty]
     lefty = rotNL 7 marble
 
 highest :: Int -> Int -> Int
-highest n m = foldlR max 0 . getScores $ foldl turn game [1..m]
-  where game = Game (fromList $ replicate n 0) (singleton 0)
+highest n m = IntMap.foldr' max 0 . getScores $ turn game n m 1
 
 getInput :: String -> (Int, Int)
 getInput s = (read (head w) :: Int, read (w !! 6) :: Int)
