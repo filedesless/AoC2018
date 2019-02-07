@@ -9,9 +9,9 @@ import Deque
 spec :: Spec
 spec = do {
 
-  ; describe "turn" $ do {
-      ; it "should work with basic examples" $ do {
-          ; getScores (turn game 9 25) `shouldBe` IntMap.fromList [(5, 32)]
+  ; describe "highest" $ do {
+      ; it "should return 32, given 9 players; last marble is worth 32 points" $ do {
+          ; highest 9 25 `shouldBe` 32
           }
       }
 
