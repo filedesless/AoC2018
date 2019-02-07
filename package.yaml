@@ -27,7 +27,7 @@ dependencies:
 - split
 - time
 - QuickCheck
-- data-clist
+- deque
 
 library:
   source-dirs: src

@@ -4,17 +4,14 @@ import Day09
 import Test.Hspec (Spec, describe, it, shouldBe)
 import Data.IntMap( IntMap )
 import qualified Data.IntMap as IntMap
-import Data.CircularList
-
-expected = Game (IntMap.fromList [(5,32)])
-           (fromList [25,10,21,5,22,11,1,12,6,13,3,14,7,15,0,16,8,17,4,18,19,2,24,20])
+import Deque
 
 spec :: Spec
 spec = do {
 
   ; describe "turn" $ do {
       ; it "should work with basic examples" $ do {
-          ; turn game 9 25 1 `shouldBe` expected
+          ; getScores (turn game 9 25) `shouldBe` IntMap.fromList [(5, 32)]
           }
       }
 
