@@ -22,12 +22,14 @@ description:         Please see the README on GitHub at <https://github.com/file
 dependencies:
 - base >= 4.7 && < 5
 - containers
-- hspec
 - text
 - split
 - time
-- QuickCheck
 - deque
+- hspec
+- QuickCheck
+- criterion
+
 
 library:
   source-dirs: src
@@ -47,6 +49,17 @@ tests:
   Aoc2018-test:
     main:                Spec.hs
     source-dirs:         test
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Aoc2018
+
+benchmarks:
+  Aoc2018-bench:
+    main:                Main.hs
+    source-dirs:         bench
     ghc-options:
     - -threaded
     - -rtsopts
