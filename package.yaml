@@ -29,7 +29,7 @@ dependencies:
 - hspec
 - QuickCheck
 - criterion
-
+- vector
 
 library:
   source-dirs: src
