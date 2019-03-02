@@ -18,22 +18,22 @@ run day part function =
   >>= printf "Day %02d %s: %s\n" day part . (show . function)
 
 main :: IO ()
-main =
-  run 1 "a)" day01a >>
-  run 1 "b)" day01b >>
-  run 2 "a)" day02a >>
-  run 2 "b)" day02b >>
-  run 3 "a)" day03a >>
-  run 3 "b)" day03b >>
-  run 4 "a)" day04a >>
-  run 4 "b)" day04b >>
-  run 5 "a)" day05a >>
-  run 5 "b)" day05b >>
-  run 6 "a)" day06a >>
-  run 6 "b)" (day06b 10000) >>
-  run 7 "a)" day07a >>
-  run 7 "b)" day07b >>
-  run 8 "a)" day08a >>
-  run 8 "b)" day08b >>
-  run 9 "a)" day09a >>
+main = do
+  run 1 "a)" day01a
+  run 1 "b)" day01b
+  run 2 "a)" day02a
+  run 2 "b)" day02b
+  run 3 "a)" day03a
+  run 3 "b)" day03b
+  run 4 "a)" day04a
+  run 4 "b)" day04b
+  run 5 "a)" day05a
+  run 5 "b)" day05b
+  run 6 "a)" day06a
+  run 6 "b)" (day06b 10000)
+  run 7 "a)" day07a
+  run 7 "b)" day07b
+  run 8 "a)" day08a
+  run 8 "b)" day08b
+  run 9 "a)" day09a
   run 9 "b)" day09b

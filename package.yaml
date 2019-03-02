@@ -30,6 +30,7 @@ dependencies:
 - QuickCheck
 - criterion
 - vector
+- array
 
 library:
   source-dirs: src
